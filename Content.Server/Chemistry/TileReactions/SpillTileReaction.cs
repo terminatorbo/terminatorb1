@@ -8,6 +8,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Slippery;
 using Content.Shared.StepTrigger.Components;
 using Content.Shared.StepTrigger.Systems;
+using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 
