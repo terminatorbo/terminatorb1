@@ -164,6 +164,7 @@
     animation: WeaponArcCosmic
     attackRate: 0.425
     range: 2
+    attackRate: 0.4
     damage:
       types:
         Blunt: 25
@@ -185,6 +186,7 @@
     distance: 7
   - type: Reflect
     reflectProb: .15
+    reflectProb: .21
     spread: 120
     soundOnReflect:
       path: /Audio/_DV/CosmicCult/cosmicsword_glance.ogg

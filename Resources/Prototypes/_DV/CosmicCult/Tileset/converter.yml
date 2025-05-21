@@ -5,7 +5,7 @@
   parent: BaseStructure
   id: CosmicConstructPylon
   name: Vacuous Chantry
-  description: Lorem Ipsum
+  description: Its surface churns with rampant malign light.
   placement:
     mode: AlignTileAny
   components:
@@ -119,3 +119,19 @@
        endValue: 4.5
        property: Energy
        enabled: true
+    corruptionMaxTicks: 12
+    corruptionSpeed: 1.25
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
