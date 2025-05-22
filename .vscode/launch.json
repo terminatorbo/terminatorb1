@@ -138,7 +138,6 @@
             "console": "integratedTerminal",
             "stopAtEntry": false
         },
-        }
     ],
     "compounds": [
         {
@@ -171,13 +170,6 @@
                 "Client - Release"
             ],
             "preLaunchTask": "build - Release"
-            "name": "Server/2xClient",
-            "configurations": [
-                "Server",
-                "Client",
-                "Client"
-            ],
-            "preLaunchTask": "build"
         }
     ]
 }
