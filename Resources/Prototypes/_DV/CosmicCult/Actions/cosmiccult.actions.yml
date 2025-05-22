@@ -182,6 +182,26 @@
     event: !type:EventCosmicNova {}
 
 #################################### ROGUE ASCENDANT ACTIONS ######################################
+- type: entity
+  id: ActionCosmicFragmentation
+  name: Null Fragmentation
+  description: Transfer your malign empowerment into a digital system, such as an AI Upload Console or Cyborg, corrupting it in the process. Doing so will expend your empowerment.
+  components:
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: EntityTargetAction
+    useDelay: 25
+    whitelist:
+      components:
+      - BorgChassis
+      - SiliconLawUpdater
+    itemIconStyle: NoItem
+    icon:
+      sprite: _DV/CosmicCult/Icons/cosmiccult_abilities.rsi
+      state: corruption
+    event: !type:EventCosmicFragmentation {}
+
+## COLOSSUS ACTIONS
 
 - type: entity
   id: ActionRogueCosmicNova
@@ -198,6 +218,13 @@
       sprite: _DV/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: roguenova
     event: !type:EventRogueCosmicNova {}
+    useDelay: 30
+    range: 7
+    itemIconStyle: NoItem
+    icon:
+      sprite: _DV/CosmicCult/Icons/cosmiccult_abilities.rsi
+      state: sunder
+    event: !type:EventCosmicColossusSunder
 
 - type: entity
   id: ActionRogueInfection
@@ -258,3 +285,5 @@
       sprite: _DV/CosmicCult/Icons/cosmiccult_abilities.rsi
       state: rogueshunt
     event: !type:EventRogueGrandShunt {}
+      state: ingress
+    event: !type:EventCosmicColossusIngress

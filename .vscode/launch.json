@@ -138,6 +138,7 @@
             "console": "integratedTerminal",
             "stopAtEntry": false
         },
+        }
     ],
     "compounds": [
         {

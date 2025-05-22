@@ -17,6 +17,7 @@ public sealed partial class CleanseCult : EntityEffect
         var uid = args.TargetEntity;
         if (entityManager.HasComponent<CosmicCultComponent>(uid)
             || entityManager.HasComponent<RogueAscendedInfectionComponent>(uid))
+        if (entityManager.HasComponent<CosmicCultComponent>(uid))
             entityManager.EnsureComponent<CleanseCultComponent>(uid); // We just slap them with the component and let the Deconversion system handle the rest.
     }
 }
