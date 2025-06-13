@@ -95,6 +95,8 @@
     autoRechargeRate: 5
   - type: UnholyItem # Goobstation Shitchap
 
+  - type: TypingIndicatorClothing
+    proto: CosmicTyping
 
 # COSMIC CULT HARDSUIT HELMET
 - type: entity

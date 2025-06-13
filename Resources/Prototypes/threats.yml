@@ -20,3 +20,9 @@
   id: Revenant
   announcement: terror-revenant
   rule: RevenantSpawn
+  rule: RevenantSpawn
+
+- type: ninjaHackingThreat # DeltaV start
+  id: Colossus
+  announcement: terror-colossus
+  rule: ColossusSpawn # DeltaV end

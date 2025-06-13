@@ -219,6 +219,7 @@
       state: roguenova
     event: !type:EventRogueCosmicNova {}
     useDelay: 30
+    useDelay: 18
     range: 7
     itemIconStyle: NoItem
     icon:
@@ -235,6 +236,8 @@
   - type: EntityTargetAction
     deselectOnMiss: true
     useDelay: 5
+    useDelay: 8
+    range: 2
     whitelist:
       components:
         - HumanoidAppearance
@@ -287,3 +290,32 @@
     event: !type:EventRogueGrandShunt {}
       state: ingress
     event: !type:EventCosmicColossusIngress
+
+- type: entity
+  id: ActionCosmicColossusHibernate
+  name: Slumber Shell
+  description: Slumber your body for a period of time to regenerate integrity. Must be done on stable ground.
+  components:
+  - type: LimitedCharges
+    maxCharges: 2
+  - type: InstantAction
+    useDelay: 120
+    checkCanInteract: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: _DV/CosmicCult/Icons/cosmiccult_abilities.rsi
+      state: slumber
+    event: !type:EventCosmicColossusHibernate {}
+
+- type: entity
+  id: ActionCosmicColossusEffigy
+  name: Beckon an Effigy
+  description: Draw out an Effigy of Entropy into realspace.
+  components:
+  - type: InstantAction
+    useDelay: 999
+    itemIconStyle: NoItem
+    icon:
+      sprite: _DV/CosmicCult/Icons/cosmiccult_abilities.rsi
+      state: nova
+    event: !type:EventCosmicColossusEffigy {}

@@ -111,6 +111,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     private TimeSpan _t3RevealDelay = default!;
     private TimeSpan _t2RevealDelay = default!;
     private TimeSpan _finaleDelay = default!;
+    private TimeSpan _voteDelay = default!;
     private TimeSpan _voteTimer = default!;
     private readonly SoundSpecifier _briefingSound = new SoundPathSpecifier("/Audio/_DV/CosmicCult/antag_cosmic_briefing.ogg");
     private readonly SoundSpecifier _deconvertSound = new SoundPathSpecifier("/Audio/_DV/CosmicCult/antag_cosmic_deconvert.ogg");
@@ -147,6 +148,10 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         Subs.CVar(_config,
             DCCVars.CosmicCultStewardVoteTimer,
             value => _voteTimer = TimeSpan.FromSeconds(value),
+            true);
+        Subs.CVar(_config,
+            DCCVars.CosmicCultStewardVoteDelayTimer,
+            value => _voteDelay = TimeSpan.FromSeconds(value),
             true);
     }
 
@@ -291,7 +296,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
         var options = new VoteOptions
         {
-            DisplayVotes = false,
             Title = Loc.GetString("cosmiccult-vote-steward-title"),
             InitiatorText = Loc.GetString("cosmiccult-vote-steward-initiator"),
             Duration = _voteTimer,
@@ -487,6 +491,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             ent.Comp.RoundEndTextAnnouncement);
 
         ent.Comp.RoundEndBehavior = RoundEndBehavior.Nothing; // prevent this being called multiple times.
+        ent.Comp.RiftStop = true; // rifts can stop spawning now.
 
         var gameruleMonument = ent.Comp.MonumentInGame;
         if (TryComp<CosmicFinaleComponent>(gameruleMonument, out var finComp))
@@ -530,6 +535,15 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
         while (query.MoveNext(out _, out var entropyComp))
             entropyComp.Siphoned = cult.Comp.EntropySiphoned;
+    }
+
+    public void AdjustCultObjectiveConversion(int value)
+    {
+        var query = EntityQueryEnumerator<CosmicConversionConditionComponent>();
+        while (query.MoveNext(out _, out var conversionComp))
+        {
+            conversionComp.Converted += value;
+        }
     }
     #endregion
 
@@ -769,6 +783,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
         _mind.TryAddObjective(mindId, mind, "CosmicFinalityObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicMonumentObjective");
+        _mind.TryAddObjective(mindId, mind, "CosmicConversionObjective");
         _mind.TryAddObjective(mindId, mind, "CosmicEntropyObjective");
 
         if (_mind.TryGetSession(mindId, out var session))
